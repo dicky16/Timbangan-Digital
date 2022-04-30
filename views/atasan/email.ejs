@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../master/head'); %>
+        <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="wrapper fixed-top d-flex align-items-center">
+        <!--Top menu -->
+        <%- include('../master/header'); %>
+
+            <!-- <header id="header" class="header fixed-top d-flex align-items-center">
+        </header> -->
+            <!-- sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar.ejs -->
+                <%- include('../master/sidebar'); %>
+            </div>
+    </div>
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Email</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Email</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- End Table with stripped rows -->
+                            <table class="table table-borderless datatable" id="tableEmail">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Gambar</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% data.forEach(function(data){ %>
+                                    <tr>
+                                        <th scope="row"><a href="#">#987</a></th>
+                                        <td>Brandon Jacob</td>
+                                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
+                                        <td>$64</td>
+                                        <td><span class="badge bg-success">Approved</span></td>
+                                    </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Disabled and active states -->
+                        <nav aria-label="..." style="padding-left: 30px;">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav><!-- End Disabled and active states -->
+
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+        </section>
+    </main><!-- End #main -->
+    <%- include('../master/script'); %>
+
+    <script>
+        $(document).ready(function () {
+            $('#tableEmail').DataTable();
+        });
+    </script>
+
+</body>
+
+</html>
