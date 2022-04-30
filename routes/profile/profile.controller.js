@@ -63,7 +63,7 @@ exports.update = async (req, res) => {
 
                 gambar.mv(uploadPath, function (err) {
                     if(err) {
-                        req.flash('error', 'gagal update, coba lagi')
+                        req.flash('error', 'gagal update, coba lagi' + err)
                     }
                 });
                 data = {
