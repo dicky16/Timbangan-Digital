@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const c = require('./report.controller')
-const m = require('../../../middleware/cek.login')
-const mRole = require('../../../middleware/cek.role')
 
 router.get('/',  c.report)
+router.get('/today', c.today)
+router.get('/date', c.byDate)
+router.get('/date/get-date', c.getDate)
 
 module.exports = router

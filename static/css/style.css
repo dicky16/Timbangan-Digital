@@ -37,6 +37,10 @@ body.active .wrapper {
     width: 100%;
 }
 
+.btn-custom {
+    width: 20%;
+}
+
 .gradient-custom-2 {
     /* fallback for old browsers */
     background: #bbac9a;
