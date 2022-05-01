@@ -5,7 +5,7 @@ const password = process.env['DBPASSWD']
 const host = process.env['DBHOST']
 const database = process.env['DATABASE']
 
-console.log(user)
+// console.log(user)
 
 const db = mysql.createConnection({
     host: host,

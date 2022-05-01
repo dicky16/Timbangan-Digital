@@ -19,6 +19,7 @@ exports.login = async (req, res, next) => {
                         res.cookie('id', results[0]['id'])
                         res.cookie('nama', results[0]['nama'])
                         res.cookie('role', results[0]['role'])
+                        res.cookie('gambar', results[0]['gambar'])
                         res.redirect('home')
                     } else {
                         req.flash('error', 'Username atau Password salah');

@@ -5,6 +5,7 @@ const session = require('express-session');
 const cookieParser = require("cookie-parser");
 const flash = require('connect-flash')
 const fileUpload = require('express-fileupload');
+const path = require('path')
 
 require('dotenv').config({path: __dirname + '/.env'})
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/static'));
+// app.use(express.static(__dirname + '/public'));
 
 // use res.render to load up an ejs view file
 
@@ -38,10 +40,12 @@ app.use(function(req, res, next) {
     var cookie = req.cookies
     var role =cookie.role
     var nama = cookie.nama
+    var gambar = cookie.gambar
     var url = req.originalUrl
     res.locals.nama = nama
     res.locals.role = role
     res.locals.url = url
+    res.locals.gambar = gambar
     next();
 });
 app.use(require('./routes'), )

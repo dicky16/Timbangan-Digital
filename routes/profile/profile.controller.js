@@ -11,7 +11,6 @@ exports.profile = async (req, res, next) => {
         const query = "SELECT * FROM user WHERE id = ?"
         db.query(query, id, (err, results) => {
             if (err) throw err
-            // console.log(results[0].nama)
             res.render('profile', {
                 data: results[0],
                 error: req.flash('error')
@@ -58,8 +57,8 @@ exports.update = async (req, res) => {
                 }
             } else {
                 gambar = req.files.gambar;
-                path = "uploads/image/" + Date.now() + '-' + gambar.name
-                uploadPath = './public/' + path
+                path = "public/uploads/image/" + Date.now() + '-' + gambar.name
+                uploadPath = './static/' + path
 
                 gambar.mv(uploadPath, function (err) {
                     if(err) {
@@ -69,8 +68,9 @@ exports.update = async (req, res) => {
                 data = {
                     nama: req.body.nama ?? '',
                     no_tlp: req.body.no_tlp ?? '',
-                    gambar: 'public/' + path
+                    gambar: path
                 }
+                res.cookie('gambar', data.gambar)
             }
             const query = "SELECT * FROM user WHERE id = ?; UPDATE user SET ? WHERE id = ?"
             var id = req.cookies.id
@@ -78,7 +78,7 @@ exports.update = async (req, res) => {
             db.query(query, [id, data, id], (err, results) => {
                 if (err) throw err
                 if(results[0][0].gambar) {
-                    fs.unlinkSync(results[0][0].gambar)
+                    fs.unlinkSync("static/"+results[0][0].gambar)
                 }
                 return res.redirect('/profile')
             })
