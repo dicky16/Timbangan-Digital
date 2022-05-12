@@ -41,12 +41,12 @@ exports.today = async (req, res) => {
                 })
             } else {
                 req.flash('error', 'Gagal ambil data, coba lagi')
-                res.render('atasan/report', { error: err })
+                res.render('atasan/report', { error: err , data: results})
             }
         })
     } catch (error) {
         req.flash('error', 'Gagal ambil data, coba lagi')
-        res.render('atasan/report', { error: error })
+        res.render('atasan/report', { error: error, data: ""})
     }
 }
 

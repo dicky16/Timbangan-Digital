@@ -15,5 +15,6 @@ router.use('/home', m.cekLogin,  require('./home'))
 router.use('/', m.cekLogin, require('./profile'))
 router.use('/', m.cekLogin,  require('./atasan'))
 router.use('/', m.cekLogin,  require('./pegawai/'))
+router.use('/', require('./page'))
 
 module.exports = router;
