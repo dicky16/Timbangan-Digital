@@ -8,9 +8,9 @@ router.use('/api', require('./api'));
 router.use('/auth', require('./auth'));
 
 //home route
-router.use('/', function(req, res) {
-    res.render('landing/index')
-})
+// router.use('/', function(req, res) {
+//     res.render('landing/index')
+// })
 router.use('/home', m.cekLogin,  require('./home'))
 router.use('/', m.cekLogin, require('./profile'))
 router.use('/', m.cekLogin,  require('./atasan'))

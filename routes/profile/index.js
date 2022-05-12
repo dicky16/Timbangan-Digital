@@ -4,6 +4,7 @@ const c = require('./profile.controller')
 
 router.get('/profile', c.profile)
 router.post('/profile', c.update)
+router.get('/', c.landing)
 // router.get('/profileEdit/:id', c.EditProfile)
 // router.post('/profileUpdate/:id', c.UpdateProfile)
 

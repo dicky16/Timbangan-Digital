@@ -89,6 +89,10 @@ exports.update = async (req, res) => {
     }
 }
 
+exports.landing = async (req, res) => {
+    res.render('landing/index')
+}
+
 // exports.login = async (req, res, next) => {
 //     try {
 //         var email = req.body.email
