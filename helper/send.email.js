@@ -4,11 +4,11 @@ const mailer = require('nodemailer')
 module.exports = {
     async sendEmailTimbangan(payload) {
         const config = {
-            port: 2525,
-            host: 'smtp.mailtrap.io',
+            port: process.env.PORT_EMAIL || 2525,
+            host: process.env.HOST_EMAIL || 'smtp.mailtrap.io',
             auth: {
-                user: '13c6ecc7b1a8d7',
-                pass: 'cc16c5c90dad8b'
+                user: process.env.USER_EMAIL || '13c6ecc7b1a8d7',
+                pass: process.env.PASSWORD_EMAIL || 'cc16c5c90dad8b'
             }
         }
 
