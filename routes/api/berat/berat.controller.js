@@ -23,17 +23,22 @@ exports.store = async (req, res, next) => {
                 for (let index = 0; index < dataSuperadmin.length; index++) {
                     email += result[1][index].email + ','
                 }
+                const payload = {
+                    email: email,
+                    name: result[1][0].nama,
+                    load: berat,
+                    date: result[1][0].created_at
+                }
+            } else {
+                const payload = {
+                    email: result[1][0].email,
+                    name: result[1][0].nama,
+                    load: berat,
+                    date: result[1][0].created_at
+                }
             }
-            console.log(email)
-            // else {
-            const payload = {
-                email: email,
-                name: result[1][0].nama,
-                load: berat,
-                date: result[1][0].created_at
-            }
+            
             mail.sendEmailTimbangan(payload)
-            // }
             var id = result[0].insertId
             var queryBerat = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, driver.nama as driver, user.nama as pic FROM berat" +
                 " JOIN driver ON berat.id_driver = driver.id" +
