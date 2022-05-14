@@ -29,6 +29,7 @@ exports.store = async (req, res, next) => {
                     load: berat,
                     date: result[1][0].created_at
                 }
+                mail.sendEmailTimbangan(payload)
             } else {
                 const payload = {
                     email: result[1][0].email,
@@ -36,9 +37,9 @@ exports.store = async (req, res, next) => {
                     load: berat,
                     date: result[1][0].created_at
                 }
+                mail.sendEmailTimbangan(payload)
             }
             
-            mail.sendEmailTimbangan(payload)
             var id = result[0].insertId
             var queryBerat = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, driver.nama as driver, user.nama as pic FROM berat" +
                 " JOIN driver ON berat.id_driver = driver.id" +
