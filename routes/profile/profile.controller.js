@@ -61,7 +61,7 @@ exports.update = async (req, res) => {
                 uploadPath = './static/' + path
 
                 gambar.mv(uploadPath, function (err) {
-                    if(err) {
+                    if (err) {
                         req.flash('error', 'gagal update, coba lagi' + err)
                     }
                 });
@@ -74,12 +74,15 @@ exports.update = async (req, res) => {
             }
             const query = "SELECT * FROM user WHERE id = ?; UPDATE user SET ? WHERE id = ?"
             var id = req.cookies.id
-            
+
             db.query(query, [id, data, id], (err, results) => {
                 if (err) throw err
-                if(results[0][0].gambar) {
-                    fs.unlinkSync("static/"+results[0][0].gambar)
+                if (gambar) {
+                    if (results[0][0].gambar) {
+                        fs.unlinkSync("static/" + results[0][0].gambar)
+                    }
                 }
+                res.cookie('nama', data.nama)
                 return res.redirect('/profile')
             })
 
