@@ -17,7 +17,17 @@ module.exports = {
             to: payload.email,
             from: 'setyawandicky1610@gmail.com',
             subject: 'testing',
-            html: `<h4>Berat timbangan adalah ${tandaPemisahTitik(payload.load)} KG, Ditimbang pada ${payload.date}</h4>`
+            html: `
+            Data berhasil direcord berikut merupakan detail dari setiap hasil timbang:
+            <br><br>
+            <br>Nama    : ${payload.name}         
+            <br>Berat   : ${payload.load} KG
+            <br>Tanggal : ${payload.date}
+            <br><br>
+            Pesan dikirim otomatis oleh sistem
+            <br>
+            *ket data ini tidak dapat diubah dari hasil timbangan secara real time
+            `
         }
         transporter.sendMail(mailOptions, function (err, info) {
             if (err)

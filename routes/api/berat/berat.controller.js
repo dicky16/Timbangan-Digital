@@ -16,13 +16,24 @@ exports.store = async (req, res, next) => {
                     error: err
                 })
             }
-
+            var dataSuperadmin = result[1]
+            var email = ""
+            // console.log(result[1])
+            if (dataSuperadmin.length > 1) {
+                for (let index = 0; index < dataSuperadmin.length; index++) {
+                    email += result[1][index].email + ','
+                }
+            }
+            console.log(email)
+            // else {
             const payload = {
-                email: result[1][0].email,
+                email: email,
+                name: result[1][0].nama,
                 load: berat,
                 date: result[1][0].created_at
             }
             mail.sendEmailTimbangan(payload)
+            // }
             var id = result[0].insertId
             var queryBerat = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, driver.nama as driver, user.nama as pic FROM berat" +
                 " JOIN driver ON berat.id_driver = driver.id" +
