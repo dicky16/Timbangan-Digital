@@ -22,7 +22,7 @@ module.exports = {
             <br><br>
             <br>Nama    : ${payload.name}         
             <br>Berat   : ${payload.load} KG
-            <br>Tanggal : ${payload.date}
+            <br>Jam/Tanggal : ${payload.date}
             <br><br>
             Pesan dikirim otomatis oleh sistem
             <br>
