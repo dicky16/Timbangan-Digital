@@ -48,7 +48,7 @@ exports.login = async (req, res, next) => {
     } catch (error) {
         res.json({
             status: "error",
-            msg: error.body
+            msg: error
         })
     }
 }
