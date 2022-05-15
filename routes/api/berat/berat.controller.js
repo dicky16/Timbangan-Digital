@@ -26,7 +26,7 @@ exports.store = async (req, res, next) => {
             let hour = dt.getHours()
             let minute = dt.getMinutes()
             let second = dt.getSeconds()
-            let date = hour + "-" + minute + "-" + second + " " + day + ":" + month + ":" + year
+            let date = hour + ":" + minute + ":" + second + " " + day + "-" + month + "-" + year
             console.log(date)
             if (dataSuperadmin.length > 1) {
                 for (let index = 0; index < dataSuperadmin.length; index++) {
