@@ -19,6 +19,15 @@ exports.store = async (req, res, next) => {
             var dataSuperadmin = result[1]
             var email = ""
             // console.log(result[1])
+            const dt = new Date()
+            let year = dt.getFullYear()
+            let month = dt.getMonth()
+            let day = dt.getDate()
+            let hour = dt.getHours()
+            let minute = dt.getMinutes()
+            let second = dt.getSeconds()
+            let date = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
+            console.log(date)
             if (dataSuperadmin.length > 1) {
                 for (let index = 0; index < dataSuperadmin.length; index++) {
                     email += result[1][index].email + ','
@@ -27,7 +36,7 @@ exports.store = async (req, res, next) => {
                     email: email,
                     name: result[1][0].nama,
                     load: berat,
-                    date: result[1][0].created_at
+                    date: date
                 }
                 mail.sendEmailTimbangan(payload)
             } else {
@@ -35,7 +44,7 @@ exports.store = async (req, res, next) => {
                     email: result[1][0].email,
                     name: result[1][0].nama,
                     load: berat,
-                    date: result[1][0].created_at
+                    date: date
                 }
                 mail.sendEmailTimbangan(payload)
             }

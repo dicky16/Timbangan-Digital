@@ -15,8 +15,8 @@ module.exports = {
         const transporter = mailer.createTransport(config)
         const mailOptions = {
             to: payload.email,
-            from: 'setyawandicky1610@gmail.com',
-            subject: 'testing',
+            from: 'admin@timbanganiot.com',
+            subject: 'Hasil Timbangan',
             html: `
             Data berhasil direcord berikut merupakan detail dari setiap hasil timbang:
             <br><br>
