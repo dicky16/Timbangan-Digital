@@ -21,7 +21,7 @@ exports.store = async (req, res, next) => {
             // console.log(result[1])
             const dt = new Date()
             let year = dt.getFullYear()
-            let month = dt.getMonth()
+            let month = dt.getMonth() + 1
             let day = dt.getDate()
             let hour = dt.getHours()
             let minute = dt.getMinutes()
