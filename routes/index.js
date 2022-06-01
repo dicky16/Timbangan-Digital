@@ -3,18 +3,24 @@ const { render } = require('ejs');
 const express = require('express');
 const router = express.Router();
 const m = require('../middleware/cek.login')
+const mRole = require('../middleware/cek.role')
 
 router.use('/api', require('./api'));
 router.use('/auth', require('./auth'));
 
 //home route
-// router.use('/', function(req, res) {
-//     res.render('landing/index')
-// })
 router.use('/home', m.cekLogin,  require('./home'))
-router.use('/', m.cekLogin, require('./profile'))
-router.use('/', m.cekLogin,  require('./atasan'))
-router.use('/', m.cekLogin,  require('./pegawai/'))
-router.use('/', require('./page'))
+router.use('/profile/', m.cekLogin, require('./profile'))
+
+// router.use('/', m.cekLogin,  require('./atasan'))
+router.use('/report', m.cekLogin,  require('./atasan/report'))
+router.use('/email', m.cekLogin,  require('./atasan/email'))
+router.use('/user', [m.cekLogin, mRole.cekRoleSuperadmin],  require('./atasan/user'))
+
+router.use('/driver/', m.cekLogin,  require('./pegawai/'))
+
+router.use('/', function(req, res) {
+    res.render('landing/index')
+})
 
 module.exports = router;
