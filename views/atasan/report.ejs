@@ -47,6 +47,26 @@
                                             </select>
                                         </div>
                                         <div class="col-2">
+                                            <select name="jenis_rumput" class="form-select">
+                                                <option value="">Pilih Jenis Rumput</option>
+                                                <% jRumput.forEach(function(jRumput){ %>
+                                                    <option value="<%= jRumput.jenis_rumput %>">
+                                                        <%= jRumput.jenis_rumput %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="col-2">
+                                            <select name="asal_rumput" class="form-select">
+                                                <option value="">Pilih Asal Rumput</option>
+                                                <% aRumput.forEach(function(aRumput){ %>
+                                                    <option value="<%= aRumput.asal_rumput %>">
+                                                        <%= aRumput.asal_rumput %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="col-2">
                                             <button class="btn btn-primary">Tampilkan</button>
                                         </div>
                                     </form>
@@ -63,9 +83,11 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Driver</th>
                                         <th scope="col">PIC</th>
+                                        <th scope="col">Jenis Rumput</th>
+                                        <th scope="col">Asal Rumput</th>
                                         <th scope="col">Berat</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Tanggal/Waktu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,13 +97,19 @@
                                                 <%= no %>
                                             </th>
                                             <td>
-                                                <%= data.driver %>
+                                                <%= data.nama_driver %>
                                             </td>
                                             <td>
                                                 <%= data.pic %>
                                             </td>
                                             <td>
-                                                <%= data.berat %>
+                                                <%= data.jenis_rumput %>
+                                            </td>
+                                            <td>
+                                                <%= data.asal_rumput %>
+                                            </td>
+                                            <td>
+                                                <%= data.berat_aktual %> KG
                                             </td>
                                             <td><span class="badge bg-success">
                                                     <%= data.status_email %>
@@ -115,6 +143,8 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> -->
         <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script>
             $(document).ready(function () {
                 $('#tableReport').DataTable({
@@ -124,14 +154,17 @@
                             extend: 'excel', 
                             className: 'btn-custom btn-success',
                             title: 'Laporan Timbangan'
+                        },
+                        {
+                            extend: 'print', 
+                            className: 'btn-custom btn-success',
+                            title: 'Laporan Timbangan'
+                        },
+                        {
+                            extend: 'pdf', 
+                            className: 'btn-custom btn-success',
+                            title: 'Laporan Timbangan'
                         }
-                        // {
-                        //     text: 'Export Excel',
-                        //     action: function (e, dt, node, config) {
-                        //         alert('Button activated');
-                        //     }
-                        // },
-                        // 'excel',
                     ]
                 });
                 $.get("/report/date/get-date", function (data, status) {

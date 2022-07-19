@@ -6,19 +6,24 @@ exports.report = async (req, res, next) => {
     var role = cookie.role
     var query = ''
     if (role == 'superadmin') {
-        query = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, driver.nama as driver, user.nama as pic FROM berat" +
-            " JOIN driver ON berat.id_driver = driver.id" +
-            " JOIN user ON berat.id_user = user.id;"
+        query = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y %H:%m:%s') as tanggal, user.nama as pic FROM berat" +
+            " JOIN user ON berat.id_user = user.id;" +
+            "SELECT * FROM jenis_rumput;" +
+            "SELECT * FROM asal_rumput;"
     } else {
-        query = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, driver.nama as driver, user.nama as pic FROM berat" +
-            " JOIN driver ON berat.id_driver = driver.id" +
-            " JOIN user ON berat.id_user = user.id WHERE berat.id_user = " + id
+        query = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y %H:%m:%s') as tanggal, user.nama as pic FROM berat" +
+            " JOIN user ON berat.id_user = user.id WHERE berat.id_user = " + id +";" +
+            "SELECT * FROM jenis_rumput;" +
+            "SELECT * FROM asal_rumput;"
     }
     db.query(query, (err, results) => {
         if (err) throw err
         if (results.length > 0) {
+            console.log(results)
             res.render('atasan/report', {
-                data: results
+                data: results[0],
+                jRumput: results[1],
+                aRumput: results[2]
             })
         } else {
             req.flash('error_data', 'Gagal ambil data, coba lagi')
@@ -53,16 +58,21 @@ exports.today = async (req, res) => {
 exports.byDate = async (req, res) => {
     try {
         var date = req.query.select
+        var asalRumput = req.query.asal_rumput
+        var jenisRumput = req.query.jenis_rumput
         // console.log(date)
-        const query = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, driver.nama as driver, user.nama as pic FROM berat" +
-            " JOIN driver ON berat.id_driver = driver.id" +
-            " JOIN user ON berat.id_user = user.id WHERE date_format(berat.created_at, '%Y-%m-%d') = ? "
-        db.query(query, date, (err, results) => {
-            // console.log(results)
+        const query = "SELECT berat.*, date_format(berat.created_at, '%d-%m-%Y') as tanggal, user.nama as pic FROM berat" +
+            " JOIN user ON berat.id_user = user.id WHERE date_format(berat.created_at, '%Y-%m-%d') = ? OR berat.jenis_rumput = ? OR berat.asal_rumput = ?;" +
+            "SELECT * FROM jenis_rumput;" +
+            "SELECT * FROM asal_rumput;"
+        db.query(query, [date, jenisRumput, asalRumput], (err, results) => {
+            console.log(results)
             if (err) throw err
             if (results.length > 0) {
                 res.render('atasan/report', {
-                    data: results
+                    data: results[0],
+                    jRumput: results[1],
+                    aRumput: results[2]
                 })
             } else {
                 req.flash('error', 'Gagal ambil data, coba lagi')
