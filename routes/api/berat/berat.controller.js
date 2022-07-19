@@ -3,7 +3,17 @@ const mail = require("../../../helper/send.email")
 
 exports.store = async (req, res, next) => {
     try {
-        const data = { ...req.body }
+        // const data = { 
+        //     id_user: req.body.id_user,
+        //     nama_driver: req.body.nama_driver,
+        //     berat: req.body.berat,
+        //     id_truk: req.body.id_truk,
+        //     jenis_rumput: req.body.jenis_rumput,
+        //     asal_rumput: req.body.asal_rumput,
+        //     status_email: "terkirim",
+        //     berat_aktual: berat_aktual
+        //  }
+        const data = {...req.body}
         var berat = req.body.berat
         const query = 'INSERT INTO berat SET ?; ' +
             'SELECT * FROM user WHERE role = "superadmin";'
