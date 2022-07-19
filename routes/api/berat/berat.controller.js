@@ -12,7 +12,8 @@ exports.store = async (req, res, next) => {
         //     asal_rumput: req.body.asal_rumput,
         //     status_email: "terkirim",
         //     berat_aktual: berat_aktual
-        //  }
+        //  } ij
+
         const data = {...req.body}
         var berat = req.body.berat
         const query = 'INSERT INTO berat SET ?; ' +
