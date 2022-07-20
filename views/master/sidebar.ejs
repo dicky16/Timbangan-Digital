@@ -32,6 +32,27 @@
     </li> -->
     <% if(role=='superadmin' ) { %>
         <li>
+            <a href="/jenis-rumput" class="<% if(url == '/jenis-rumput') { %> active <% } %>">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span class="item">Jenis Rumput</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/asal-rumput" class="<% if(url == '/asal-rumput') { %> active <% } %>">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span class="item">Asal Rumput</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/truk" class="<% if(url == '/truk') { %> active <% } %>">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span class="item">Truk</span>
+            </a>
+        </li>
+
+        <li>
             <a href="/user" class="<% if(url == '/user') { %> active <% } %>">
                 <span class="icon"><i class="fas fa-chart-line"></i></span>
                 <span class="item">User</span>

@@ -16,6 +16,9 @@ router.use('/profile/', m.cekLogin, require('./profile'))
 router.use('/report', m.cekLogin,  require('./atasan/report'))
 router.use('/email', m.cekLogin,  require('./atasan/email'))
 router.use('/user', [m.cekLogin, mRole.cekRoleSuperadmin],  require('./atasan/user'))
+router.use('/jenis-rumput', [m.cekLogin, mRole.cekRoleSuperadmin],  require('./atasan/jenis_rumput'))
+router.use('/asal-rumput', [m.cekLogin, mRole.cekRoleSuperadmin],  require('./atasan/asal_rumput'))
+router.use('/truk', [m.cekLogin, mRole.cekRoleSuperadmin],  require('./atasan/truk'))
 
 router.use('/driver/', m.cekLogin,  require('./pegawai/'))
 

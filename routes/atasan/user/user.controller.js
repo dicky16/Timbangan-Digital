@@ -2,7 +2,7 @@ const db = require("../../../config/db")
 
 exports.user = async (req, res, next) => {
     try {
-        const query = "SELECT * FROM user WHERE role = 'admin'"
+        const query = "SELECT * FROM user"
         db.query(query, (err, results) => {
             if (err) throw err
             if (results.length > 0) {
@@ -11,7 +11,7 @@ exports.user = async (req, res, next) => {
                 })
             } else {
                 req.flash('error_data', 'Gagal ambil data, coba lagi')
-                res.render('atasan/report', { data: results })
+                res.render('atasan/user', { data: results })
             }
         })
     } catch (error) {
