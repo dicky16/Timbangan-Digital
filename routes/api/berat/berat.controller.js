@@ -15,7 +15,7 @@ exports.store = async (req, res, next) => {
         //  } ij
 
         const data = {...req.body}
-        var berat = req.body.berat
+        var berat = req.body.berat_aktual
         const query = 'INSERT INTO berat SET ?; ' +
             'SELECT * FROM user WHERE role = "superadmin";'
 
