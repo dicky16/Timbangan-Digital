@@ -52,8 +52,8 @@ exports.update = async (req, res) => {
             let path
             if (!req.files || Object.keys(req.files).length === 0) {
                 data = {
-                    nama: req.body?.nama,
-                    no_tlp: req.body?.no_tlp
+                    nama: req.body.nama,
+                    no_tlp: req.body.no_tlp
                 }
             } else {
                 gambar = req.files.gambar;
@@ -66,8 +66,8 @@ exports.update = async (req, res) => {
                     }
                 });
                 data = {
-                    nama: req?.body?.nama,
-                    no_tlp: req?.body?.no_tlp,
+                    nama: req.body.nama,
+                    no_tlp: req.body.no_tlp,
                     gambar: path
                 }
                 res.cookie('gambar', data.gambar)
